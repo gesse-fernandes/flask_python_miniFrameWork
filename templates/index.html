@@ -9,10 +9,25 @@
     <title>Document</title>
 </head>
 <body>
+    <!--
    <form action="" method="post">
     <input type="text" name="name" id="">
+   </form>-->
+   <form action="" method="post">
+    <input type="text" name="nome" id="">
+    <input type="text" name="email" id="">
+    <input type="submit" name="acao" value="Enviar!">
    </form>
-
+   {% for cliente in content %}
+    <div class="testes">
+        
+        <p>Nome: {{cliente[1] }}</p>
+        <p>Email: {{cliente[2] }}</p>
+        <a href="/deletar?id={{cliente[0]}}">Deletar</a>
+        <hr>
+    </div>
+        {% endfor %}
+    
     <script src="{{url_for('static',filename = 'script.js') }}"></script>
 </body>
 </html>
