@@ -48,5 +48,27 @@ def deletar():
     db.commit()
     return redirect('/')
 
+@app.route("/atualizar",methods=['GET','POST'])
+def atualizar():
+    if request.method == "POST":
+                action = request.form.get("acao")
+                if action != "":
+                    id = request.form.get("id")
+                    nome = request.form.get("nome")
+                    email = request.form.get("email")
+                    cursor = db.cursor()
+                    sql = "UPDATE clientes set  nome = %s, email = %s where id = %s"
+                    cursor.execute(sql,(nome,email,id))
+                    db.commit()
+                    return redirect("/")
+    else:    
+        cursor = db.cursor()
+        sql = "SELECT * from clientes where id = %s"
+        cursor.execute(sql,(request.args.get("id")))
+        db.commit()
+        results = cursor.fetchall()
+        
+        return render_template('atualizar.html',content = results)
+
 if __name__ == "__main__":
     app.run(debug=True,use_reloader=True)
