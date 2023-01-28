@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- <link rel="stylesheet" href="static/style.css">-->
+   <link rel="stylesheet" href="{{url_for('static',filename = 'style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
@@ -10,5 +12,7 @@
     {% for value in content %}
         <p>Valor: {{value}}</p>
     {% endfor %}
+
+    <script src="{{url_for('static',filename = 'script.js') }}"></script>
 </body>
 </html>
